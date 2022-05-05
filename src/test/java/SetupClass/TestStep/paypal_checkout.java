@@ -3,6 +3,7 @@ package SetupClass.TestStep;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import org.junit.Assert;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -227,7 +228,12 @@ public class paypal_checkout extends Set {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'No, delete my')]")));
 		js.executeScript("arguments[0].scrollIntoView();", continue_delete);
 		continue_delete.click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
+		String verifyDeleteAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']"))).getText();
+		 Thread.sleep(3000);
+	         Assert.assertTrue("Account is not deleted", verifyDeleteAccount.contains("Your account has been deleted successfully."));
+	         System.out.println("your account delete successfully");
 	}
 
 
