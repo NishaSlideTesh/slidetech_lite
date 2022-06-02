@@ -80,9 +80,9 @@ public class co_checkout extends SetClass {
 		// String URLsign_up = driver.getCurrentUrl();
 		// System.out.println("AfterSignUpurl = " + URLsign_up);
 
-		Thread.sleep(1000);
-		WebElement new_email_signup = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"/html[1]/body[1]/div[2]/main[1]/div[1]/div[1]/div[2]/div[1]/form[1]/fieldSetClass[1]/div[4]/div[1]/input[1]")));
+		Thread.sleep(3000);
+		WebElement new_email_signup = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='email_address']")));
 		// Thread.sleep(2000);
 		new_email_signup.sendKeys(full_email);
 		Thread.sleep(1000);
@@ -103,26 +103,26 @@ public class co_checkout extends SetClass {
 		WebElement new_pwd_signup = wait.until(ExpectedConditions.elementToBeClickable(By.id("password")));
 		// Thread.sleep(2000);
 		new_pwd_signup.sendKeys("selenium@123");
-		// Thread.sleep(1000);
+		Thread.sleep(1000);
 
 		WebElement new_pwd1_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.id("password-confirmation")));
 		// Thread.sleep(2000);
 		new_pwd1_signup.sendKeys("selenium@123");
-		// Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		// enter captcha
 		WebElement new_captcha_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.id("captcha_user_create")));
 		// Thread.sleep(2000);
 		new_captcha_signup.sendKeys("Aj7W2mtf9namwf55");
-		// Thread.sleep(2000);
+		Thread.sleep(2000);
 
 		// sign up button
 		WebElement new_btn_signup = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".submit")));
-		// Thread.sleep(2000);
+		Thread.sleep(2000);
 		new_btn_signup.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 	}
 
 	@Then("^user is redirected to pricing page and choose a plan to pay (\\d+)CO$")
