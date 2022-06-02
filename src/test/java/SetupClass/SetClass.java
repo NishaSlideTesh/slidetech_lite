@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Set {
+public class SetClass {
 
 	public static WebDriver driver;
 	public static String AppURL;
