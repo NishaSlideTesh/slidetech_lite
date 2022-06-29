@@ -76,7 +76,7 @@ public class co_checkout extends SetUPClass {
 		System.out.println(full_email);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-		Thread.sleep(1000);
+
 		WebElement new_email_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='email_address']")));
 		// Thread.sleep(2000);
@@ -99,20 +99,30 @@ public class co_checkout extends SetUPClass {
 		new_pwd_signup.sendKeys("selenium@123");
 
 
+
+		Thread.sleep(1000);
+
+
 		WebElement new_pwd1_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='password-confirmation']")));
 		new_pwd1_signup.sendKeys("selenium@123");
 
+
+
+		Thread.sleep(2000);
 
 		// enter captcha
 		WebElement new_captcha_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='captcha_user_create']")));
 		new_captcha_signup.sendKeys("Aj7W2mtf9namwf55");
 
+
 		// sign up button
 		WebElement new_btn_signup = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".submit")));
 		new_btn_signup.click();
 		Thread.sleep(3000);
+
+		Thread.sleep(2000);
 	}
 
 	@Then("^user is redirected to pricing page and choose a plan to pay (\\d+)CO$")
