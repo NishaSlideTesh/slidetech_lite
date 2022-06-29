@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SetClass {
+public class SetUPClass {
 
 	public static WebDriver driver;
 	public static String AppURL;
@@ -31,8 +31,9 @@ public class SetClass {
 	public static String local_FFbrowser;
 	public String Button_Click_Time;
 	public String message_write_time;
-	//public String TestFile = "C:\\Users\\slide53\\eclipse-workspace\\SlideTeamWebsiteFormsAuto\\write.txt";
-	
+	// public String TestFile =
+	// "C:\\Users\\slide53\\eclipse-workspace\\SlideTeamWebsiteFormsAuto\\write.txt";
+
 	@BeforeClass
 	public static void before_Class() throws Exception {
 		log = Logger.getLogger(BeforeClass.class.getName());
@@ -43,14 +44,15 @@ public class SetClass {
 		// on source lab setup
 		AppURL = property.getProperty("App_url");
 		System.out.println("Bname=====" + AppURL);
-	
+
 		if ((local_chrome.equals("yes"))) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--disable-notifications");
 			driver = new ChromeDriver(options);
-		     
+
 			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(9000, TimeUnit.MILLISECONDS);
 			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 			Thread.sleep(1000);
 		}
@@ -67,8 +69,9 @@ public class SetClass {
 			System.out.println("platform does not provide");
 
 		}
-			
-		}
+
+	}
+
 	public static void Chat_window_handle() throws InterruptedException {
 		try {
 			WebElement iframe = driver.findElement(By.id("livechat-full-view"));
@@ -93,14 +96,13 @@ public class SetClass {
 
 		}
 	}
-	
-	
+
 	@AfterClass
 	public static void after_Class() throws InterruptedException {
 		Thread.sleep(2000);
-		driver.quit();  //->> don't want to close the browser for now
+		driver.quit(); // ->> don't want to close the browser for now
 		Thread.sleep(2000);
-	
+
 	}
 
 }

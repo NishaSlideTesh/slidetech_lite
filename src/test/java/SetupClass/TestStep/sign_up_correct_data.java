@@ -4,20 +4,18 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import SetupClass.SetClass;
+import SetupClass.SetUPClass;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 
-import org.openqa.selenium.JavascriptExecutor;
-
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-
-public class sign_up_correct_data extends SetClass {
+public class sign_up_correct_data extends SetUPClass {
 	WebDriverWait wait = new WebDriverWait(driver, 50);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -183,7 +181,7 @@ public class sign_up_correct_data extends SetClass {
 		// My_Account.click();
 
 		// handling the chat window here
-		SetClass.Chat_window_handle();
+		SetUPClass.Chat_window_handle();
 
 		WebElement Delete_Account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Delete Account']")));
