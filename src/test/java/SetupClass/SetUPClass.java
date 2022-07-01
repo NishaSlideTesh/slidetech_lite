@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +34,9 @@ public class SetUPClass {
 	public static String local_FFbrowser;
 	public String Button_Click_Time;
 	public String message_write_time;
+	public static WebDriverWait wait;
+
+	public static JavascriptExecutor js;
 	// public String TestFile =
 	// "C:\\Users\\slide53\\eclipse-workspace\\SlideTeamWebsiteFormsAuto\\write.txt";
 
@@ -49,12 +55,20 @@ public class SetUPClass {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--disable-notifications");
+			// options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+			options.addArguments("--incognito"); // DesiredCapabilities object
+			DesiredCapabilities c = DesiredCapabilities.chrome(); // set capability to
+			c.setCapability(ChromeOptions.CAPABILITY, options);
+
 			driver = new ChromeDriver(options);
 
 			driver.manage().window().maximize();
+
+			// driver.get(AppURL);
 			driver.manage().timeouts().implicitlyWait(9000, TimeUnit.MILLISECONDS);
-			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			Thread.sleep(1000);
+			driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+			wait = new WebDriverWait(driver, 30);
+			js = (JavascriptExecutor) driver;
 		}
 		// if (browser.equalsIgnoreCase("firefox"))
 
@@ -62,12 +76,16 @@ public class SetUPClass {
 		else if ((local_FFbrowser.equals("yes"))) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(9000, TimeUnit.MILLISECONDS);
+			driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+			wait = new WebDriverWait(driver, 30);
+			js = (JavascriptExecutor) driver;
 
 			Thread.sleep(1000);
 		} else {
 
 			System.out.println("platform does not provide");
-
 		}
 
 	}
