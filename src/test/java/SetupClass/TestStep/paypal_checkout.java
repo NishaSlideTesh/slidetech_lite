@@ -25,21 +25,8 @@ public class paypal_checkout extends SetUPClass {
 	public void user_is_already_on_Website_Home_Page_pp() throws Throwable {
 		driver.get(AppURL);
 		Thread.sleep(2000);
-		driver.manage().deleteAllCookies();
+		ClearBrowserCache();
 		Thread.sleep(2000);
-
-		log.info("It's opening the website URL");
-		try {
-			WebElement logout = driver.findElement(By.xpath("//a[contains(text(),'Sign Out')]"));
-			if (logout.isEnabled()) {
-				logout.click();
-				// Thread.sleep(2000);
-				driver.navigate().refresh();
-				// Thread.sleep(2000);
-			}
-		} catch (NoSuchElementException Ext) {
-
-		}
 	}
 
 	@Then("^user navigates to sign up page pp$")

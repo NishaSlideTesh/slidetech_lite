@@ -21,25 +21,12 @@ public class sign_up_correct_data extends SetUPClass {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	@Given("^user is already on sign up page cd$")
-	public void user_is_already_on_sign_up_page_cd() throws InterruptedException {
+	public void user_is_already_on_sign_up_page_cd() throws Throwable {
 
 		driver.get(AppURL);
 		Thread.sleep(2000);
-		driver.manage().deleteAllCookies();
+		ClearBrowserCache();
 		Thread.sleep(2000);
-
-		log.info("It's opening the website URL");
-		try {
-			WebElement logout = driver.findElement(By.xpath("//a[contains(text(),'Sign Out')]"));
-			if (logout.isEnabled()) {
-				logout.click();
-				// Thread.sleep(2000);
-				driver.navigate().refresh();
-				// Thread.sleep(2000);
-			}
-		} catch (NoSuchElementException Ext) {
-
-		}
 		try {
 			WebElement Signup = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Sign up")));
 			Signup.click();

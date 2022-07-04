@@ -115,6 +115,14 @@ public class SetUPClass {
 		}
 	}
 
+	public static void ClearBrowserCache() throws Throwable {
+
+		driver.manage().deleteAllCookies();
+		Thread.sleep(4000); // wait 7 seconds to clear cookies.
+		driver.navigate().refresh();
+		Thread.sleep(2000);
+	}
+
 	@AfterClass
 	public static void after_Class() throws InterruptedException {
 		Thread.sleep(2000);
