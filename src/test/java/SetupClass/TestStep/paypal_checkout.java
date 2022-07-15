@@ -213,6 +213,7 @@ public class paypal_checkout extends SetUPClass {
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));
 		System.out.println("your account delete successfully");
+		//done
 	}
 
 }
