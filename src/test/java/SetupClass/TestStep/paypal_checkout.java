@@ -173,7 +173,7 @@ public class paypal_checkout extends SetUPClass {
 		// Switch To Default Window
 
 		driver.switchTo().window(currentWindow);
-		// Thread.sleep(2000);
+		 Thread.sleep(2000);
 
 	}
 
