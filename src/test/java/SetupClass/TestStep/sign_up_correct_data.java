@@ -166,7 +166,7 @@ public class sign_up_correct_data extends SetUPClass {
 		Thread.sleep(1000);
 		WebElement My_Account = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("My Account")));
 		js.executeScript("arguments[0].click();", My_Account);
-		// My_Account.click();
+		Thread.sleep(3000);
 
 		// handling the chat window here
 		SetUPClass.Chat_window_handle();

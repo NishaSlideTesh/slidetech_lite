@@ -181,8 +181,8 @@ public class co_checkout extends SetUPClass {
 	
 
 		// handling the chat window here
-		SetUPClass.Chat_window_handle();
-
+		//SetUPClass.Chat_window_handle();
+		Thread.sleep(3000);
 		WebElement Delete_Account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Delete Account']")));
 
