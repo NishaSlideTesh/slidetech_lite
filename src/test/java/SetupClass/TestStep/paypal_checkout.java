@@ -75,7 +75,7 @@ public class paypal_checkout extends SetUPClass {
 
 		WebElement new_fname_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='firstname']")));
-		Thread.sleep(2000);
+		Thread.sleep(2000);//input[@id='firstname']
 		new_fname_signup.sendKeys("Selenium");
 		Thread.sleep(2000);
 
