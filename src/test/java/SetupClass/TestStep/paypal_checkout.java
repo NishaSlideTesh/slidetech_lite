@@ -64,43 +64,43 @@ public class paypal_checkout extends SetUPClass {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		Thread.sleep(1000);
+		Thread.sleep(2000);
 		WebElement new_email_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='email_address']")));
-		// Thread.sleep(2000);
+		Thread.sleep(2000);
 		new_email_signup.sendKeys(full_email);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		// enter name
 
 		WebElement new_fname_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='firstname']")));
-
+		Thread.sleep(2000);
 		new_fname_signup.sendKeys("Selenium");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		WebElement new_lname_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='lastname']")));
+		Thread.sleep(2000);
 		new_lname_signup.sendKeys("Testing");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		// enter password
 		WebElement new_pwd_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='password']")));
+		Thread.sleep(2000);
 		new_pwd_signup.sendKeys("selenium@123");
+		Thread.sleep(2000);
 
 		WebElement new_pwd1_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='password-confirmation']")));
+		Thread.sleep(2000);
 		new_pwd1_signup.sendKeys("selenium@123");
-
-		// enter captcha
-		WebElement new_captcha_signup = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='captcha_user_create']")));
-		new_captcha_signup.sendKeys("Aj7W2mtf9namwf55");
-
-		// sign up button
-		WebElement new_btn_signup = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".submit")));
+		Thread.sleep(2000);
+		WebElement new_btn_signup = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Sign Up']")));
+		Thread.sleep(2000);
 		new_btn_signup.click();
-		Thread.sleep(3000);
 	}
 
 	@Then("^user is redirected to pricing page and choose a plan to pay pp$")
@@ -173,7 +173,7 @@ public class paypal_checkout extends SetUPClass {
 		// Switch To Default Window
 
 		driver.switchTo().window(currentWindow);
-		 Thread.sleep(2000);
+		Thread.sleep(2000);
 
 	}
 
@@ -186,7 +186,7 @@ public class paypal_checkout extends SetUPClass {
 		Thread.sleep(3000);
 
 		// handling the chat window here
-		//SetUPClass.Chat_window_handle();
+		// SetUPClass.Chat_window_handle();
 
 		WebElement Delete_Account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Delete Account']")));
@@ -213,7 +213,7 @@ public class paypal_checkout extends SetUPClass {
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));
 		System.out.println("your account delete successfully");
-		//done
+		// done
 	}
 
 }
