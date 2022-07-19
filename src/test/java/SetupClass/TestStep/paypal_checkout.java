@@ -75,7 +75,7 @@ public class paypal_checkout extends SetUPClass {
 
 		WebElement new_fname_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='firstname']")));
-		Thread.sleep(2000);//input[@id='firstname']
+		Thread.sleep(2000);// input[@id='firstname']
 		new_fname_signup.sendKeys("Selenium");
 		Thread.sleep(2000);
 
@@ -181,8 +181,8 @@ public class paypal_checkout extends SetUPClass {
 	public void user_deleted_the_account_pp() throws Throwable {
 
 		Thread.sleep(2000);
-		WebElement My_Account = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("My Account")));
-		js.executeScript("arguments[0].click();", My_Account);
+		WebElement account = driver.findElement(By.xpath("//a[contains(.,'My Account')]"));
+		js.executeScript("arguments[0].click();", account);
 		Thread.sleep(3000);
 
 		// handling the chat window here
@@ -190,11 +190,12 @@ public class paypal_checkout extends SetUPClass {
 
 		WebElement Delete_Account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Delete Account']")));
-
+		Thread.sleep(2000);
 		Delete_Account.click();
 		Thread.sleep(1000);
 		WebElement radio_button = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='option1']")));
+		Thread.sleep(2000);
 		radio_button.click();
 		Thread.sleep(1000);
 		WebElement delete_Profile = wait.until(
