@@ -70,7 +70,7 @@ public class sign_up_correct_data extends SetUPClass {
 	public void user_enter_firstname_and_lastname_to_sign_up_cd() throws InterruptedException {
 
 		WebElement new_fname_signup = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='email_address']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='firstname']")));
 		// Thread.sleep(1000);
 		new_fname_signup.sendKeys("Selenium");
 		// Thread.sleep(1000);
@@ -196,7 +196,7 @@ public class sign_up_correct_data extends SetUPClass {
 		Thread.sleep(3000);
 
 		String verifyDeleteAccount = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']"))).getText();
+				By.xpath("//span[@x-html='message.text']"))).getText();
 		Thread.sleep(3000);
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));
