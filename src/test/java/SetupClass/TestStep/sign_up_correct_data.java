@@ -132,31 +132,38 @@ public class sign_up_correct_data extends SetUPClass {
 
 	@Then("^user lands on pricing page and then user go to free ppts page cd$")
 	public void user_lands_on_pricing_page_and_then_user_go_to_free_ppts_page_cd() throws InterruptedException {
+		try {
+			WebElement free_Stuff = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//li[@class='menu-item has-sub-class']//a[@title = 'Free Stuff']")));
+			Actions action = new Actions(driver);
+			action.moveToElement(free_Stuff).perform();
+			Thread.sleep(2000);
+			WebElement free_ppt = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Free Samples']")));
+			action.moveToElement(free_ppt).click().perform();
+		} catch (NoSuchElementException e) {
 
-		Thread.sleep(4000);
-		Actions actions = new Actions(driver);
-		WebElement free_ppt_btn1 = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Free Stuff")));
-		actions.moveToElement(free_ppt_btn1)
-				.moveToElement(driver.findElement(By.xpath("//a[@title='Free Business PPTs']"))).click().build()
-				.perform();
+		}
 
 	}
 
 	@Then("^user download a free product cd$")
 	public void user_download_a_free_product_cd() throws InterruptedException {
 
-		WebElement select_ppt = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//img[@title='Circular Flow Of Process 4 Stages Free PowerPoint Templates Slides']")));
-		js.executeScript("arguments[0].scrollIntoView();", select_ppt);
-		select_ppt.click();
+		try {
+			WebElement select_ppt = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+					"//img[@title='3d man education and technology concept free ppt templates graphics icons']")));
+			js.executeScript("arguments[0].scrollIntoView();", select_ppt);
+			select_ppt.click();
 
-		Thread.sleep(1000);
+			WebElement download_ppt = wait.until(ExpectedConditions
+					.elementToBeClickable(By.xpath("//button[normalize-space()='Download this presentation']")));
+			js.executeScript("arguments[0].scrollIntoView();", download_ppt);
+			download_ppt.click();
+			Thread.sleep(3000);
+		} catch (NoSuchElementException e) {
 
-		Thread.sleep(1000);
-		WebElement dwnd_btn = driver.findElement(By.cssSelector("#clicking"));
-		js.executeScript("arguments[0].scrollIntoView();", dwnd_btn);
-		dwnd_btn.click();
-		Thread.sleep(1000);
+		}
 		// "Enjoy this Product" pop will come
 		if (!driver.findElements(By.xpath("//a[@class='mfp-close roundlink']")).isEmpty()) {
 			WebElement close_pop_up = wait
