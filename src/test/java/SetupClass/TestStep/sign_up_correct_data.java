@@ -133,7 +133,7 @@ public class sign_up_correct_data extends SetUPClass {
 	@Then("^user lands on pricing page and then user go to free ppts page cd$")
 	public void user_lands_on_pricing_page_and_then_user_go_to_free_ppts_page_cd() throws InterruptedException {
 
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 		Actions actions = new Actions(driver);
 		WebElement free_ppt_btn1 = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Free Stuff")));
 		actions.moveToElement(free_ppt_btn1)
@@ -145,25 +145,25 @@ public class sign_up_correct_data extends SetUPClass {
 	@Then("^user download a free product cd$")
 	public void user_download_a_free_product_cd() throws InterruptedException {
 
-		/*
-		 * WebElement select_ppt = wait.until(ExpectedConditions.elementToBeClickable(
-		 * By.
-		 * xpath("//img[@title='Circular Flow Of Process 4 Stages Free PowerPoint Templates Slides']"
-		 * ))); js.executeScript("arguments[0].scrollIntoView();", select_ppt);
-		 * select_ppt.click();
-		 */
+		WebElement select_ppt = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//img[@title='Circular Flow Of Process 4 Stages Free PowerPoint Templates Slides']")));
+		js.executeScript("arguments[0].scrollIntoView();", select_ppt);
+		select_ppt.click();
+
 		Thread.sleep(1000);
-		driver.get("https://www.slideteam.net/circular-flow-of-process-4-stages-powerpoint-slides-templates.html");
+
 		Thread.sleep(1000);
 		WebElement dwnd_btn = driver.findElement(By.cssSelector("#clicking"));
 		js.executeScript("arguments[0].scrollIntoView();", dwnd_btn);
 		dwnd_btn.click();
 		Thread.sleep(1000);
 		// "Enjoy this Product" pop will come
-		WebElement close_pop_up = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='mfp-close roundlink']")));
-		close_pop_up.click();
-		Thread.sleep(2000);
+		if (!driver.findElements(By.xpath("//a[@class='mfp-close roundlink']")).isEmpty()) {
+			WebElement close_pop_up = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='mfp-close roundlink']")));
+			close_pop_up.click();
+			Thread.sleep(2000);
+		}
 	}
 
 	@Then("^user delete the new account created cd$")
@@ -178,7 +178,7 @@ public class sign_up_correct_data extends SetUPClass {
 
 		WebElement Delete_Account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Delete Account']")));
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		Delete_Account.click();
 		WebElement radio_button = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='option1']")));
@@ -195,8 +195,8 @@ public class sign_up_correct_data extends SetUPClass {
 		continue_delete.click();
 		Thread.sleep(3000);
 
-		String verifyDeleteAccount = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//span[@x-html='message.text']"))).getText();
+		String verifyDeleteAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@x-html='message.text']"))).getText();
 		Thread.sleep(3000);
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));

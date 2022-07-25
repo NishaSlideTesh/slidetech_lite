@@ -186,13 +186,13 @@ public class paypal_checkout extends SetUPClass {
 		Thread.sleep(3000);
 
 		// handling the chat window here
-		// SetUPClass.Chat_window_handle();
+		SetUPClass.Chat_window_handle();
 
 		WebElement Delete_Account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Delete Account']")));
 		Thread.sleep(2000);
-		Delete_Account.click();
-		Thread.sleep(1000);
+		js.executeScript("arguments[0].click();", Delete_Account);
+		Thread.sleep(3000);
 		WebElement radio_button = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='option1']")));
 		Thread.sleep(2000);
@@ -208,8 +208,8 @@ public class paypal_checkout extends SetUPClass {
 		js.executeScript("arguments[0].scrollIntoView();", continue_delete);
 		continue_delete.click();
 		Thread.sleep(4000);
-		String verifyDeleteAccount = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//span[@x-html='message.text']"))).getText();
+		String verifyDeleteAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@x-html='message.text']"))).getText();
 		Thread.sleep(3000);
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));
