@@ -125,9 +125,9 @@ public class sign_up_correct_data extends SetUPClass {
 
 		WebElement new_btn_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Sign Up']")));
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		new_btn_signup.click();
-
+		Thread.sleep(5000);
 	}
 
 	@Then("^user lands on pricing page and then user go to free ppts page cd$")

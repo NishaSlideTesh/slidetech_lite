@@ -99,7 +99,7 @@ public class co_checkout extends SetUPClass {
 		Thread.sleep(2000);
 		WebElement new_btn_signup = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Sign Up']")));
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		new_btn_signup.click();
 
 		Thread.sleep(2000);
@@ -194,8 +194,8 @@ public class co_checkout extends SetUPClass {
 		continue_delete.click();
 		Thread.sleep(2000);
 
-		String verifyDeleteAccount = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//span[@x-html='message.text']"))).getText();
+		String verifyDeleteAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@x-html='message.text']"))).getText();
 		Thread.sleep(3000);
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));
