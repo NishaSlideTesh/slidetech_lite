@@ -192,7 +192,7 @@ public class paypal_checkout extends SetUPClass {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='clicking']")));
 		Thread.sleep(2000);
 		js.executeScript("arguments[0].click();", Delete_Account);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		
 		WebElement radio_button = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='option1']")));
