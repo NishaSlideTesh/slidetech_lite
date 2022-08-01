@@ -174,27 +174,26 @@ public class paypal_checkout extends SetUPClass {
 		// Switch To Default Window
 
 		driver.switchTo().window(currentWindow);
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
 	}
 
 	@Then("^user deleted the account pp$")
 	public void user_deleted_the_account_pp() throws Throwable {
 
-		Thread.sleep(2000);
 		WebElement account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
 		js.executeScript("arguments[0].click();", account);
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 
 		// handling the chat window here
-		SetUPClass.Chat_window_handle();
+		//SetUPClass.Chat_window_handle();
+
 		
-		Thread.sleep(3000);
-		WebElement delete_account = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#clicking")));
-		js.executeScript("arguments[0].scrollIntoView();", delete_account);
-		js.executeScript("arguments[0].click();", delete_account);
-		// delete_account.click();
+		WebElement delete_account = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='clicking']")));
+		// js.executeScript("arguments[0].scrollIntoView();", delete_account);
+		// js.executeScript("arguments[0].click();", delete_account);
+		delete_account.click();
 
 		Thread.sleep(3000);
 		WebElement delete_reason = wait
