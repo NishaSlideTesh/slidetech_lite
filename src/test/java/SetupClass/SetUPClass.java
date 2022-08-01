@@ -105,7 +105,7 @@ public class SetUPClass {
 				driver.switchTo().defaultContent();
 				Thread.sleep(1000);
 				driver.switchTo().parentFrame();
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 			} else {
 
 				System.out.println("chat window does not open");
