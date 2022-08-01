@@ -101,6 +101,7 @@ public class paypal_checkout extends SetUPClass {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Sign Up']")));
 		Thread.sleep(2000);
 		new_btn_signup.click();
+		Thread.sleep(4000);
 	}
 
 	@Then("^user is redirected to pricing page and choose a plan to pay pp$")
