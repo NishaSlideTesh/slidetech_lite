@@ -182,19 +182,23 @@ public class paypal_checkout extends SetUPClass {
 	public void user_deleted_the_account_pp() throws Throwable {
 
 		Thread.sleep(2000);
-		WebElement account = driver.findElement(By.xpath("//a[contains(.,'My Account')]"));
+		WebElement account = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
 		js.executeScript("arguments[0].click();", account);
 		Thread.sleep(3000);
 
 		// handling the chat window here
 		SetUPClass.Chat_window_handle();
-		WebElement delete_account = driver.findElement(By.cssSelector("#clicking"));
+		
+		Thread.sleep(3000);
+		WebElement delete_account = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#clicking")));
 		js.executeScript("arguments[0].scrollIntoView();", delete_account);
 		js.executeScript("arguments[0].click();", delete_account);
 		// delete_account.click();
+
 		Thread.sleep(3000);
-		WebElement delete_reason = driver.findElement(By.cssSelector("#exampleRadios1"));
-		Thread.sleep(3000);
+		WebElement delete_reason = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#exampleRadios1")));
 		js.executeScript("arguments[0].click();", delete_reason);
 		Thread.sleep(3000);
 
