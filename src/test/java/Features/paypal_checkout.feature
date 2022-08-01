@@ -1,5 +1,6 @@
 @paypal_checkout
 Feature:  Paypal Checkout
+@Ignored
 Scenario: Test paypal checkout
 
 Given user is already on Website Home Page pp
