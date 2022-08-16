@@ -157,7 +157,7 @@ public class sign_up_correct_data extends SetUPClass {
 					"//img[@title='3d man education and technology concept free ppt templates graphics icons']")));
 			js.executeScript("arguments[0].scrollIntoView();", select_ppt);
 			select_ppt.click();
-
+			Thread.sleep(3000);
 			WebElement download_ppt = wait.until(ExpectedConditions
 					.elementToBeClickable(By.xpath("//button[normalize-space()='Download this presentation']")));
 			js.executeScript("arguments[0].scrollIntoView();", download_ppt);
