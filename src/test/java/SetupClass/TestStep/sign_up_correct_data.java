@@ -167,11 +167,18 @@ public class sign_up_correct_data extends SetUPClass {
 
 		}
 		// "Enjoy this Product" pop will come
-		if (!driver.findElements(By.xpath("//a[@class='mfp-close roundlink']")).isEmpty()) {
-			WebElement close_pop_up = wait
-					.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='mfp-close roundlink']")));
-			close_pop_up.click();
+		if (!driver.findElements(By.xpath("//div[@class='checkout_custom']")).isEmpty()) {
+			WebElement selectRadioButton = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//label[normalize-space()='Human Resources']//span[@class='checkmark']")));
+			selectRadioButton.click();
+
+			WebElement submitButton = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
+			submitButton.click();
 			Thread.sleep(2000);
+			
+			WebElement msg = driver.findElement(By.xpath("//span[text() = 'Interest has been saved.']")); 
+			Assert.assertTrue(msg.isDisplayed());
 		}
 	}
 
