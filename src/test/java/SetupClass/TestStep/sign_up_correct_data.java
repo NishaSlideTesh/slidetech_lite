@@ -171,13 +171,13 @@ public class sign_up_correct_data extends SetUPClass {
 			WebElement selectRadioButton = wait.until(ExpectedConditions.elementToBeClickable(
 					By.xpath("//label[normalize-space()='Human Resources']//span[@class='checkmark']")));
 			selectRadioButton.click();
-
+			Thread.sleep(1000);
 			WebElement submitButton = wait
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
 			submitButton.click();
 			Thread.sleep(2000);
-			
-			WebElement msg = driver.findElement(By.xpath("//span[text() = 'Interest has been saved.']")); 
+
+			WebElement msg = driver.findElement(By.xpath("//span[text() = 'Interest has been saved.']"));
 			Assert.assertTrue(msg.isDisplayed());
 		}
 	}
