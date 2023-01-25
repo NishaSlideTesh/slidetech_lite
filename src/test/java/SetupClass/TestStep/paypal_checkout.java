@@ -181,32 +181,30 @@ public class paypal_checkout extends SetUPClass {
 	@Then("^user deleted the account pp$")
 	public void user_deleted_the_account_pp() throws Throwable {
 
-		Thread.sleep(2000);
 		WebElement account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
 		js.executeScript("arguments[0].click();", account);
+		Thread.sleep(3000);
 
-		WebElement delete_account = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#clicking")));
+		WebElement delete_account = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='clicking']")));
 		Thread.sleep(3000);
 		// js.executeScript("arguments[0].scrollIntoView();", delete_account);
 		js.executeScript("arguments[0].click();", delete_account);
 
 		Thread.sleep(3000);
-		WebElement delete_reason = driver.findElement(By.cssSelector("#exampleRadios1"));
-		js.executeScript("arguments[0].scrollIntoView();", delete_reason);
+		WebElement delete_reason = driver.findElement(By.cssSelector("input#exampleRadios1"));
 		Thread.sleep(3000);
 		js.executeScript("arguments[0].click();", delete_reason);
 		Thread.sleep(3000);
 
 		WebElement delete_profile = wait
-				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#delete-final")));
-		js.executeScript("arguments[0].scrollIntoView();", delete_profile);
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button#delete-final")));
 		js.executeScript("arguments[0].click();", delete_profile);
 		Thread.sleep(3000);
 
-		WebElement delete_profile_coupon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
-				"#flipModal > div > div > div.modal-footer.button_action > button.btn.btn-default.button_2")));
-		js.executeScript("arguments[0].scrollIntoView();", delete_profile_coupon);
+		WebElement delete_profile_coupon = wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'btn btn-default button_2']")));
 		delete_profile_coupon.click();
 		Thread.sleep(30000);
 		String verifyDeleteAccount = wait
