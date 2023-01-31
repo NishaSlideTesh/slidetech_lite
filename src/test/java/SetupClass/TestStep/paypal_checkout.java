@@ -142,7 +142,7 @@ public class paypal_checkout extends SetUPClass {
 	public void user_proceed_to_pay_with_paypal_pp() throws Throwable {
 
 		Thread.sleep(5000);
-		SetUPClass.Chat_window_handle(); // place order button
+
 		try {
 			WebElement place_order_btn = wait.until(ExpectedConditions.elementToBeClickable(
 					By.xpath("//button[@id='place-order-trigger']//span[contains(text(),'Place Order')] ")));
@@ -183,14 +183,14 @@ public class paypal_checkout extends SetUPClass {
 
 		WebElement account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
-		js.executeScript("arguments[0].click();", account);
+		account.click();
 		Thread.sleep(3000);
+		chatWindow();
 
 		WebElement delete_account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='clicking']")));
 		Thread.sleep(3000);
-		// js.executeScript("arguments[0].scrollIntoView();", delete_account);
-		js.executeScript("arguments[0].click();", delete_account);
+		delete_account.click();
 
 		Thread.sleep(3000);
 		WebElement delete_reason = wait
@@ -203,11 +203,13 @@ public class paypal_checkout extends SetUPClass {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button#delete-final")));
 		js.executeScript("arguments[0].click();", delete_profile);
 		Thread.sleep(3000);
+		chatWindow();
 
 		WebElement delete_profile_coupon = wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'btn btn-default button_2']")));
 		delete_profile_coupon.click();
-		Thread.sleep(30000);
+		Thread.sleep(3000);
+
 		String verifyDeleteAccount = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@x-html='message.text']"))).getText();
 		Thread.sleep(3000);

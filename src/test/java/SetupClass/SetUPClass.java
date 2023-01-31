@@ -17,6 +17,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -99,15 +100,17 @@ public class SetUPClass {
 
 	}
 
-	public static void Chat_window_handle() throws InterruptedException {
+	public void chatWindow() throws Throwable {
+
 		try {
-			WebElement iframe = driver.findElement(By.id("livechat-full-view"));
-			if (iframe.isDisplayed()) {
+			WebElement iframe = driver.findElement(By.xpath("//iframe[@id = 'chat-widget' or @name = 'chat-widget']"));
+			Thread.sleep(1000);
+			boolean value = iframe.isDisplayed();
+			System.out.println("value = " + value);
+			if (value == true) {
 				driver.switchTo().frame(iframe);
-				Actions act = new Actions(driver);
-				act.moveToElement(driver.findElement(By.cssSelector("#title .icon-minimize"))).build().perform();
-				Thread.sleep(1000);
-				WebElement chat1 = driver.findElement(By.cssSelector("#title .icon-minimize"));
+				WebElement chat1 = wait.until(ExpectedConditions.elementToBeClickable(
+						By.xpath("//div[@role = 'main']//button[@aria-label = 'Minimize window']")));
 				Thread.sleep(1000);
 				chat1.click();
 				Thread.sleep(1000);
