@@ -185,10 +185,11 @@ public class paypal_checkout extends SetUPClass {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
 		account.click();
 		Thread.sleep(3000);
+		driver.navigate().refresh();
 		chatWindow();
 
 		WebElement delete_account = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='clicking']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@id, 'clicking')]/self::a")));
 		Thread.sleep(3000);
 		delete_account.click();
 

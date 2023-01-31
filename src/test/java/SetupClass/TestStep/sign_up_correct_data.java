@@ -188,9 +188,11 @@ public class sign_up_correct_data extends SetUPClass {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
 		js.executeScript("arguments[0].click();", account);
 		Thread.sleep(3000);
+		driver.navigate().refresh();
+		Thread.sleep(3000);
 
 		WebElement delete_account = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='clicking']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@id, 'clicking')]/self::a")));
 		Thread.sleep(3000);
 		// js.executeScript("arguments[0].scrollIntoView();", delete_account);
 		js.executeScript("arguments[0].click();", delete_account);
