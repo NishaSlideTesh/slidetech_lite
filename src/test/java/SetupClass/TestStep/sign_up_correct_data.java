@@ -184,17 +184,16 @@ public class sign_up_correct_data extends SetUPClass {
 
 	@Then("^user delete the new account created cd$")
 	public void user_delete_the_new_account_created_cd() throws InterruptedException {
+		Thread.sleep(3000);
 		WebElement account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
 		js.executeScript("arguments[0].click();", account);
 		Thread.sleep(3000);
-		driver.navigate().refresh();
-		Thread.sleep(3000);
+		//chatWindow();
 
 		WebElement delete_account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@id, 'clicking')]/self::a")));
 		Thread.sleep(3000);
-		// js.executeScript("arguments[0].scrollIntoView();", delete_account);
 		js.executeScript("arguments[0].click();", delete_account);
 
 		Thread.sleep(3000);
@@ -208,11 +207,13 @@ public class sign_up_correct_data extends SetUPClass {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button#delete-final")));
 		js.executeScript("arguments[0].click();", delete_profile);
 		Thread.sleep(3000);
+		//chatWindow();
 
 		WebElement delete_profile_coupon = wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'btn btn-default button_2']")));
-		delete_profile_coupon.click();
-		Thread.sleep(30000);
+		js.executeScript("arguments[0].click();", delete_profile_coupon);
+		Thread.sleep(3000);
+
 		String verifyDeleteAccount = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@x-html='message.text']"))).getText();
 		Thread.sleep(3000);

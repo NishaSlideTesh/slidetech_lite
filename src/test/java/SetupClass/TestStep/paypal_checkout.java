@@ -126,7 +126,7 @@ public class paypal_checkout extends SetUPClass {
 	@Then("^user is redirected to checkout page pp$")
 	public void user_is_redirected_to_checkout_page_pp() throws Throwable {
 
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		try {
 			WebElement cp_btn = wait
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='paypal_express']")));
@@ -141,14 +141,16 @@ public class paypal_checkout extends SetUPClass {
 	@Then("^user proceed to pay with paypal pp$")
 	public void user_proceed_to_pay_with_paypal_pp() throws Throwable {
 
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 
 		try {
-			WebElement place_order_btn = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//button[@id='place-order-trigger']//span[contains(text(),'Place Order')] ")));
+			WebElement place_order_btn = wait.until(ExpectedConditions
+					.elementToBeClickable(By.xpath("//input[@id='paypal_express' or @value = 'paypal_express']")));
+			Thread.sleep(3000);
 			js.executeScript("arguments[0].scrollIntoView();", place_order_btn);
 
 			place_order_btn.click();
+			Thread.sleep(3000);
 		} catch (Exception e) {
 		}
 	}
@@ -156,42 +158,60 @@ public class paypal_checkout extends SetUPClass {
 	@Then("^paypal popup appears and user navigates back to my account pp$")
 	public void paypal_popup_appears_and_user_navigates_back_to_my_account_pp() throws Throwable {
 
-		// Maximize Window driver.manage().window().maximize();
+		// handling window
+		// Store the CurrentWindow for future reference
 
-		// Store the CurrentWindow for future reference // String handle = " ";
 		String currentWindow = driver.getWindowHandle();
 		String popupWindowHandle = null;
 
-		// Switch To Popup Window
-
+		Thread.sleep(4000);
 		for (String handle : driver.getWindowHandles()) {
 			if (!handle.equals(currentWindow)) {
 
 				popupWindowHandle = handle;
+
+				Thread.sleep(1000);
 				driver.switchTo().window(popupWindowHandle);
-				driver.manage().window().maximize();
+				// System.out.println("user is on mainWindow ------" + popupWindowHandle);
+
+				System.out.println("Title = " + driver.getTitle());
+
+				Assert.assertTrue("title does not matched",
+						driver.getTitle().contains("Log in to your PayPal account"));
+				Thread.sleep(1000);
+
+				WebElement email = wait
+						.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='email']")));
+				email.clear();
+				email.sendKeys("nisha.dhiman@slidetech.in");
+
+				Thread.sleep(1000);
+				WebElement next = wait
+						.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='btnNext']")));
+				next.click();
+				Thread.sleep(2000);
+				// verify text is on hold due to paypal security reason.
 			}
 		}
-		Thread.sleep(3000);
+		// This is to switch to the main window
 		driver.switchTo().window(currentWindow);
-		Thread.sleep(4000);
 
 	}
 
 	@Then("^user deleted the account pp$")
 	public void user_deleted_the_account_pp() throws Throwable {
 
+		Thread.sleep(3000);
 		WebElement account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(.,'My Account')]")));
-		account.click();
+		js.executeScript("arguments[0].click();", account);
 		Thread.sleep(3000);
-		driver.navigate().refresh();
-		chatWindow();
+		//chatWindow();
 
 		WebElement delete_account = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@id, 'clicking')]/self::a")));
 		Thread.sleep(3000);
-		delete_account.click();
+		js.executeScript("arguments[0].click();", delete_account);
 
 		Thread.sleep(3000);
 		WebElement delete_reason = wait
@@ -204,11 +224,11 @@ public class paypal_checkout extends SetUPClass {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button#delete-final")));
 		js.executeScript("arguments[0].click();", delete_profile);
 		Thread.sleep(3000);
-		chatWindow();
+		//chatWindow();
 
 		WebElement delete_profile_coupon = wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'btn btn-default button_2']")));
-		delete_profile_coupon.click();
+		js.executeScript("arguments[0].click();", delete_profile_coupon);
 		Thread.sleep(3000);
 
 		String verifyDeleteAccount = wait
@@ -217,6 +237,9 @@ public class paypal_checkout extends SetUPClass {
 		Assert.assertTrue("Account is not deleted",
 				verifyDeleteAccount.contains("Your account has been deleted successfully."));
 		System.out.println("your account delete successfully");
+		
+		
+		
 	}
 
 }
